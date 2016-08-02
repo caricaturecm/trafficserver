@@ -76,7 +76,7 @@ GlobalHookPlugin::handleReadResponseHeaders(Transaction &transaction)
 {
   if (isBrotliSupported(transaction)) {
     TS_DEBUG(TAG, "Brotli is supported.");
-    if (isText(transaction)) {
+    if (!inCompressBlacklist(transaction)) {
       checkContentEncoding(transaction);
       if (osContentEncoding_ == GZIP || osContentEncoding_ == NONENCODE) {
         if (osContentEncoding_ == GZIP) {
@@ -91,12 +91,11 @@ GlobalHookPlugin::handleReadResponseHeaders(Transaction &transaction)
 }
 
 bool
-GlobalHookPlugin::isText(Transaction &transaction)
+GlobalHookPlugin::inCompressBlacklist(Transaction &transaction)
 {
   Headers &hdr       = transaction.getServerResponse().getHeaders();
   string contentType = hdr.values("Content-Type");
-  if ((contentType.find("text") != string::npos) || (contentType.find("javascript") != string::npos) ||
-      (contentType.find("json") != string::npos)) {
+  if (contentType.find("image") != string::npos) {
     return true;
   }
   return false;
