@@ -18,8 +18,10 @@
 #ifndef _BROTLI_TRANSFORM_PLUGIN_
 #define _BROTLI_TRANSFORM_PLUGIN_
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <zlib.h>
+#include <getopt.h>
 #include <atscppapi/GlobalPlugin.h>
 #include <atscppapi/TransformationPlugin.h>
 #include <atscppapi/GzipInflateTransformation.h>
