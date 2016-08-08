@@ -63,7 +63,7 @@ BrotliTransformationPlugin::consume(const string &data)
   uint8_t *output;
   while (pos != end) {
     copySize = min(blockSize, end - pos);
-    p        = reinterpret_cast<const char *>(buf) + pos;
+    p        = buf + pos;
     readData = reinterpret_cast<const uint8_t *>(p);
 
     compressor->CopyInputToRingBuffer(copySize, readData);
