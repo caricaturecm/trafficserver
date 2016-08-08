@@ -119,7 +119,7 @@ GlobalHookPlugin::inCompressBlacklist(Transaction &transaction)
 {
   Headers &hdr       = transaction.getServerResponse().getHeaders();
   string contentType = hdr.values("Content-Type");
-  for (auto it = BLACKLIST_OF_COMPRESS_FILE_TYPE.begin(); it != BLACKLIST_OF_COMPRESS_FILE_TYPE.end(); it++) {
+  for (vector<string>::iterator it = BLACKLIST_OF_COMPRESS_FILE_TYPE.begin(); it != BLACKLIST_OF_COMPRESS_FILE_TYPE.end(); it++) {
     if (contentType.find(*it) != string::npos) {
       TS_DEBUG(TAG, "Do not compress for url %s", transaction.getClientRequest().getUrl().getUrlString().c_str());
       return true;
