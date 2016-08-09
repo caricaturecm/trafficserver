@@ -1939,6 +1939,7 @@ AC_CONFIG_FILES([
   lib/atscppapi/Makefile
   lib/atscppapi/examples/Makefile
   lib/atscppapi/src/Makefile
+  lib/atscppapi/mocks/Makefile
   lib/atscppapi/src/include/atscppapi/shared_ptr.h
   lib/bindings/Makefile
   lib/perl/Makefile
@@ -2028,6 +2029,10 @@ AC_CONFIG_FILES([
   tools/tsxs
 ])
 
+AC_CHECK_HEADERS([gmock/gmock.h], [has_gmock=1],[has_gmock=0])
+AC_CHECK_LIB([gmock],[InitGoogleMock],[AC_SUBST([LIB_GMOCK],["-lgmock -lgtest"])],[has_gmock=0])
+AC_SUBST(has_gmock)
+AM_CONDITIONAL([HAS_GMOCK], [ test "x${has_gmock}" = "x1" ])
 # -----------------------------------------------------------------------------
 # 7. autoheader TEMPLATES
 
