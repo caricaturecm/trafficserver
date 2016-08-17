@@ -50,7 +50,6 @@ namespace utils
    * @return a string which is the pretty printed address
    */
   // std::string getIpString(const sockaddr *);
-  MOCK_METHOD1(getIpString, std::string(const sockaddr *));
 
   /**
    * @brief Returns just the port portion of the sockaddr *
@@ -59,7 +58,6 @@ namespace utils
    * @return a uint16_t which is the port from the sockaddr *
    */
   // uint16_t getPort(const sockaddr *);
-  MOCK_METHOD1(getPort, uint16_t(const sockaddr *));
 
   /**
    * @brief Returns a pretty printed string of a sockaddr * including port
@@ -68,7 +66,6 @@ namespace utils
    * @return a string which is the pretty printed address including port
    */
   // std::string getIpPortString(const sockaddr *);
-  MOCK_METHOD1(getIpPortString, std::string(const sockaddr *));
 }
 }
 

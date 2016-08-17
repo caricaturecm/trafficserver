@@ -22,7 +22,7 @@ AM_CPPFLAGS = \
   -I$(top_srcdir)/lib \
   -I/home/y/include
 
-CXXFLAGS = \
+AM_CXXFLAGS = \
   -g -pipe -Wall -O3 -feliminate-unused-debug-symbols -fno-strict-aliasing -Wno-invalid-offsetof -mcx16
 
 # build the library

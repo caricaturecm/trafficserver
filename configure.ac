@@ -1910,6 +1910,13 @@ AS_IF([test "x$RPATH" != "x"], [
        TS_ADDTO_RPATH([$RPATH])
 ])
 
+# check gmock
+AC_CHECK_HEADERS([gmock/gmock.h], [has_gmock=1],[has_gmock=0])
+AC_CHECK_LIB([gmock],[InitGoogleMock],[AC_SUBST([LIB_GMOCK],["-lgmock -lgtest"])],[has_gmock=0])
+AC_SUBST(has_gmock)
+AM_CONDITIONAL([HAS_GMOCK], [ test "x${has_gmock}" = "x1" ])
+
+
 # -----------------------------------------------------------------------------
 # 6. OUTPUT FILES
 
@@ -2029,10 +2036,6 @@ AC_CONFIG_FILES([
   tools/tsxs
 ])
 
-AC_CHECK_HEADERS([gmock/gmock.h], [has_gmock=1],[has_gmock=0])
-AC_CHECK_LIB([gmock],[InitGoogleMock],[AC_SUBST([LIB_GMOCK],["-lgmock -lgtest"])],[has_gmock=0])
-AC_SUBST(has_gmock)
-AM_CONDITIONAL([HAS_GMOCK], [ test "x${has_gmock}" = "x1" ])
 # -----------------------------------------------------------------------------
 # 7. autoheader TEMPLATES
 
