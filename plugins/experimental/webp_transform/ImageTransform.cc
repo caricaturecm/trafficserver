@@ -43,14 +43,12 @@ void
 ImageTransform::handleInputComplete()
 {
   string input_data = _img.str();
-  Blob input_blob(input_data.data(), input_data.length());
-  Image image;
-  image.read(input_blob);
+  input_blob_.update(input_data.data(), input_data.length());
+  image_.read(input_blob_);
 
-  Blob output_blob;
-  image.magick("WEBP");
-  image.write(&output_blob);
-  string output_data(reinterpret_cast<const char *>(output_blob.data()), output_blob.length());
+  image_.magick("WEBP");
+  image_.write(&output_blob_);
+  string output_data(reinterpret_cast<const char *>(output_blob_.data()), output_blob_.length());
   produce(output_data);
 
   setOutputComplete();

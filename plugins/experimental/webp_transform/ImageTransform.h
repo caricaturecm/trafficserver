@@ -37,12 +37,31 @@ public:
   {
     TransformationPlugin::registerHook(HOOK_READ_RESPONSE_HEADERS);
   }
+
   void handleReadResponseHeaders(Transaction &transaction);
   void consume(const string &data);
   void handleInputComplete();
+  Blob &
+  getInputBlob()
+  {
+    return input_blob_;
+  }
+  Blob &
+  getOutputBlob()
+  {
+    return output_blob_;
+  }
+  Image &
+  getImageObject()
+  {
+    return image_;
+  }
+
   virtual ~ImageTransform() {}
 private:
   std::stringstream _img;
+  Image image_;
+  Blob input_blob_, output_blob_;
 };
 
 class GlobalHookPlugin : public GlobalPlugin
